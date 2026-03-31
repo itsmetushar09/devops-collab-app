@@ -16,7 +16,7 @@ pipeline {
         stage('Install Backend') {
             steps {
                 dir('server') {
-                    sh 'npm install'
+                    bat 'npm install'
                 }
             }
         }
@@ -24,7 +24,7 @@ pipeline {
         stage('Install Frontend') {
             steps {
                 dir('client') {
-                    sh 'npm install'
+                    bat 'npm install'
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 dir('client') {
-                    sh 'npm run build'
+                    bat 'npm run build'
                 }
             }
         }
@@ -40,7 +40,7 @@ pipeline {
         stage('Run Backend Check') {
             steps {
                 dir('server') {
-                    sh 'node -e "console.log(\'Backend OK\')"'
+                    bat 'node -e "console.log(\'Backend OK\')"'
                 }
             }
         }
