@@ -7,11 +7,11 @@ pipeline {
 
     stages {
 
-        stage('Clone Repo') {
-            steps {
-                git 'https://github.com/itsmetushar09/devops-collab-app'
-            }
-        }
+      stage('Clone Repo') {
+    steps {
+        git branch: 'main', url: 'https://github.com/itsmetushar09/devops-collab-app'
+    }
+}
 
         stage('Install Backend') {
             steps {
