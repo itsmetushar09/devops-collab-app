@@ -12,20 +12,20 @@ export default function Dashboard() {
   const [title, setTitle] = useState("");
 
   const fetchTasks = async () => {
-    const res = await axios.get("https://devops-collab-app.onrender.com//api/tasks", config)
+    const res = await axios.get("https://devops-collab-app.onrender.com/api/tasks", config)
     setTasks(res.data);
   };
 
   const addTask = async () => {
     if (!title.trim()) return alert("Task cannot be empty");
 
-    await axios.post("https://devops-collab-app.onrender.com//api/tasks", { title }, config)
+    await axios.post("https://devops-collab-app.onrender.com/api/tasks", { title }, config)
     setTitle("");
     fetchTasks();
   };
 
   const deleteTask = async (id) => {
-    await axios.delete(`https://devops-collab-app.onrender.com//api/tasks/${id}`, config)
+    await axios.delete(`https://devops-collab-app.onrender.com/api/tasks/${id}`, config)
     fetchTasks();
   };
 
@@ -34,7 +34,7 @@ export default function Dashboard() {
       task.status === "pending" ? "completed" : "pending";
 
     await axios.put(
-  `https://devops-collab-app.onrender.com//api/tasks/${task._id}`,
+  `https://devops-collab-app.onrender.com/api/tasks/${task._id}`,
   { status: updatedStatus },
   config
 )
