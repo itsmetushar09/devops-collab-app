@@ -28,5 +28,8 @@ router.post("/login", async (req, res) => {
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
   res.json({ token });
 });
+router.get("/register", (req, res) => {
+  res.send("Register API is working. Use POST request.");
+});
 
 module.exports = router;
