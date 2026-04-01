@@ -2,16 +2,16 @@ pipeline {
     agent any
 
     environment {
-        NODE_ENV = 'development'
+        NODE_ENV = 'production'
     }
 
     stages {
 
-      stage('Clone Repo') {
-    steps {
-        git branch: 'main', url: 'https://github.com/itsmetushar09/devops-collab-app'
-    }
-}
+        stage('Clone Repo') {
+            steps {
+                git 'https://github.com/itsmetushar09/devops-collab-app'
+            }
+        }
 
         stage('Install Backend') {
             steps {
@@ -37,17 +37,17 @@ pipeline {
             }
         }
 
-        stage('Run Backend Check') {
+        stage('Deploy Backend to Render') {
             steps {
-                dir('server') {
-                    sh 'node -e "console.log(\'Backend OK\')"'
-                }
+                sh '''
+                curl -X POST https://api.render.com/deploy/srv-d7615mma2pns73fm7bk0?key=Hba4GXTETsQ
+                '''
             }
         }
 
         stage('Success') {
             steps {
-                echo 'Build Successful 🚀'
+                echo 'CI/CD Pipeline Completed 🚀'
             }
         }
     }
